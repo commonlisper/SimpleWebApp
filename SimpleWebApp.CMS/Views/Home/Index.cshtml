@@ -1,0 +1,33 @@
+﻿@using SimpleWebApp.BusinessLogic.DTO
+@model IEnumerable<ArticleDto>
+
+@{
+    ViewBag.Title = "Main Page";
+}
+
+<div class="row">
+    @Html.ActionLink("New Article", "Edit", "Article", null, new { @class = "btn btn-primary" })
+</div>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Url</th>
+            <th>Commands</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var articleDto in Model)
+        {
+            <tr>
+                <td>@articleDto.Title</td>
+                <td>@articleDto.Url</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Article", new { id = articleDto.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Remove", "Remove", "Article", new { id = articleDto.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
