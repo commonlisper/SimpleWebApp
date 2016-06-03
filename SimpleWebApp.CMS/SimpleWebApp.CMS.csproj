@@ -163,7 +163,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ArticleDto.cs" />
+    <Compile Include="Models\ArticleDtoMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +178,7 @@
     <Content Include="scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\ArticleView.cshtml" />
+    <Content Include="Views\Article\EditDescription.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -192,6 +193,10 @@
     <ProjectReference Include="..\SimpleWebApp.BusinessLogic\SimpleWebApp.BusinessLogic.csproj">
       <Project>{db8d689f-e8df-4bd8-b272-253e0d5be7e1}</Project>
       <Name>SimpleWebApp.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleWebApp.Domain\SimpleWebApp.Domain.csproj">
+      <Project>{e289884c-c869-4791-85a7-f1cf40f3439a}</Project>
+      <Name>SimpleWebApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

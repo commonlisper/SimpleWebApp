@@ -6,7 +6,7 @@ namespace SimpleWebApp.Domain.Abstract
     {
         IEnumerable<T> GetAll();
         T Get(int id);
-        T Add(T item);
+        void Add(T item);
         void Update(T item);
         void Remove(int id);
     }

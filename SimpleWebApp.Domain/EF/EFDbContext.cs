@@ -10,6 +10,6 @@ namespace SimpleWebApp.Domain.EF
 
         }
 
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Article> Articles { get; set; }        
     }
 }

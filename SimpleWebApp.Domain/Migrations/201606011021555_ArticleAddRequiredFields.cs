@@ -1,8 +1,7 @@
-namespace SimpleWebApp.CMS.Migrations
+using System.Data.Entity.Migrations;
+
+namespace SimpleWebApp.Domain.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class ArticleAddRequiredFields : DbMigration
     {
         public override void Up()

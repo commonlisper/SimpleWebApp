@@ -22,12 +22,10 @@ namespace SimpleWebApp.Domain
         public Article Get(int id) =>
             _db.Articles.Find(id);        
 
-        public Article Add(Article item)
+        public void Add(Article item)
         {
             _db.Articles.Add(item);
-            _db.SaveChanges();
-
-            return item;
+            _db.SaveChanges();            
         }
 
         public void Update(Article item)

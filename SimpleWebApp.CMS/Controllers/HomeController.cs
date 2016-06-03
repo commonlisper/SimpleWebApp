@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using SimpleWebApp.BusinessLogic;
 using SimpleWebApp.BusinessLogic.Abstract;
-using SimpleWebApp.BusinessLogic.DTO;
+using SimpleWebApp.Domain;
+using SimpleWebApp.Domain.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IArticleService _articleService = new ArticleService();
-
-        // todo: need loose coupling
+        private readonly IArticleService _articleService = new ArticleService(
+            new ArticlesRepository(new EfDbContext()), new MyMapper());
+        
         //public HomeController(IRepository<Article> db)
         //{
         //    _articleDb = db;
@@ -21,7 +18,7 @@ namespace SimpleWebApp.CMS.Controllers
 
         public ActionResult Index()
         {           
-            return View(_articleService.GetArticleDtoList());
+            return View(_articleService.GetArticleViewItemsDto());
         }       
     }
 }

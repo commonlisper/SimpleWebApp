@@ -1,76 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SimpleWebApp.BusinessLogic.Abstract;
 using SimpleWebApp.BusinessLogic.DTO;
-using SimpleWebApp.Domain;
 using SimpleWebApp.Domain.Abstract;
 using SimpleWebApp.Domain.Entities;
-using SimpleWebApp.Domain.EF;
 
 namespace SimpleWebApp.BusinessLogic
 {
     public class ArticleService : IArticleService
     {
         private readonly IRepository<Article> _repository;
+        private readonly IMapper _mapper;
 
-        public ArticleService(/*IRepository<Article> repository*/)
+        public ArticleService(IRepository<Article> repository, IMapper mapper)
         {
-            _repository = new ArticlesRepository(new EfDbContext());
-            //_repository = repository;
+            _repository = repository;
+            _mapper = mapper;
         }
 
-        public IEnumerable<ArticleDto> GetArticleDtoList() =>
-            _repository.GetAll().Select(ArticleToDto).ToList();
+        public IEnumerable<ArticleViewItemDto> GetArticleViewItemsDto() =>
+            _repository.GetAll()
+                .Select(article => _mapper.Map<Article, ArticleViewItemDto>(article));
 
-        public ArticleDto GetArticleDto(int id) =>
-             ArticleToDto(_repository.Get(id));
+        public ArticleEditDto GetArticleEditDto(int id) =>
+            _mapper.Map<Article, ArticleEditDto>(_repository.Get(id));
 
-        public ArticleDto Add(ArticleDto articleView)
+        public ArticleDescriptionEditDto GetArticleDescriptionEditDto(int id) =>
+            _mapper.Map<Article, ArticleDescriptionEditDto>(_repository.Get(id));
+
+        public void Add(ArticleEditDto dto)
         {
-            _repository.Add(DtoToArticle(articleView));
-
-            return articleView;
+            _repository.Add(_mapper.Map<ArticleEditDto, Article>(dto));
         }
 
-        public void Update(ArticleDto articleView) =>        
-            _repository.Update(DtoToArticle(articleView));
-        
-        public void Remove(int id) =>        
-            _repository.Remove(id);        
-
-        private ArticleDto ArticleToDto(Article article)
+        public void Update(ArticleEditDto editDto)
         {
+            _repository.Update(_mapper.Map<ArticleEditDto, Article>(editDto));
+        }
+
+        public void UpdateDescription(ArticleDescriptionEditDto descriptionEditDto)
+        {
+            var article = _repository.Get(descriptionEditDto.Id);
+
             if (article == null)
             {
-                throw new ArgumentNullException(nameof(article));
+                return;
             }
 
-            return new ArticleDto
-            {                
-                Id = article.Id,
-                Title = article.Title,
-                Description = article.Description,
-                Url = article.Url
-            };
+            article.Description = descriptionEditDto.Description;
+
+            _repository.Update(article);
         }
 
-        private Article DtoToArticle(ArticleDto articleDto)
-        {
-            if (articleDto == null)
-            {
-                throw new ArgumentNullException(nameof(articleDto));
-            }
-
-            return new Article
-            {
-                Id = articleDto.Id,
-                Title = articleDto.Title,
-                Description = articleDto.Description,
-                Url = articleDto.Url
-            };
-        }
+        public void Remove(int id) =>
+            _repository.Remove(id);
     }
 }
