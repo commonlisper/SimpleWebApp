@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
-using SimpleWebApp.Domain.EF;
+using SimpleWebApp.DAL.EF;
 
-namespace SimpleWebApp.Domain.Migrations
+namespace SimpleWebApp.DAL.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<EfDbContext>
     {

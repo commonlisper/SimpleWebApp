@@ -2,8 +2,8 @@
 using System.Linq;
 using SimpleWebApp.BusinessLogic.Abstract;
 using SimpleWebApp.BusinessLogic.DTO;
-using SimpleWebApp.Domain.Abstract;
-using SimpleWebApp.Domain.Entities;
+using SimpleWebApp.DAL.Abstract;
+using SimpleWebApp.DAL.Entities;
 
 namespace SimpleWebApp.BusinessLogic
 {

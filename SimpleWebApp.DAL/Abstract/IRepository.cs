@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SimpleWebApp.Domain.Abstract
+namespace SimpleWebApp.DAL.Abstract
 {
     public interface IRepository<T>
     {

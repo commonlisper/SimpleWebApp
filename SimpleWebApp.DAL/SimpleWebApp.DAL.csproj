@@ -7,8 +7,8 @@
     <ProjectGuid>{E289884C-C869-4791-85A7-F1CF40F3439A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SimpleWebApp.Domain</RootNamespace>
-    <AssemblyName>SimpleWebApp.Domain</AssemblyName>
+    <RootNamespace>SimpleWebApp.DAL</RootNamespace>
+    <AssemblyName>SimpleWebApp.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

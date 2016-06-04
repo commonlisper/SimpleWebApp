@@ -59,14 +59,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleWebApp.Domain\SimpleWebApp.Domain.csproj">
-      <Project>{e289884c-c869-4791-85a7-f1cf40f3439a}</Project>
-      <Name>SimpleWebApp.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleWebApp.DAL\SimpleWebApp.DAL.csproj">
+      <Project>{e289884c-c869-4791-85a7-f1cf40f3439a}</Project>
+      <Name>SimpleWebApp.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SimpleWebApp.Domain.Entities
+﻿namespace SimpleWebApp.DAL.Entities
 {
     public class Article
     {

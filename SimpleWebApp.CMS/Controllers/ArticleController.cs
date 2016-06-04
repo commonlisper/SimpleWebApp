@@ -6,8 +6,8 @@ using System.Web.Mvc;
 using SimpleWebApp.BusinessLogic;
 using SimpleWebApp.BusinessLogic.Abstract;
 using SimpleWebApp.BusinessLogic.DTO;
-using SimpleWebApp.Domain;
-using SimpleWebApp.Domain.EF;
+using SimpleWebApp.DAL;
+using SimpleWebApp.DAL.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using SimpleWebApp.Domain.Entities;
+using SimpleWebApp.DAL.Entities;
 
-namespace SimpleWebApp.Domain.EF
+namespace SimpleWebApp.DAL.EF
 {
     public class EfDbContext : DbContext
     {

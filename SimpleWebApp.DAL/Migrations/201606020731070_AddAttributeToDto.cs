@@ -1,8 +1,7 @@
-namespace SimpleWebApp.Domain.Migrations
+using System.Data.Entity.Migrations;
+
+namespace SimpleWebApp.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class AddAttributeToDto : DbMigration
     {
         public override void Up()

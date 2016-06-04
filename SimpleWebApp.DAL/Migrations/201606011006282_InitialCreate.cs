@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 
-namespace SimpleWebApp.Domain.Migrations
+namespace SimpleWebApp.DAL.Migrations
 {
     public partial class InitialCreate : DbMigration
     {
