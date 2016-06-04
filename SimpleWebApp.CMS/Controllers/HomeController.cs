@@ -41,24 +41,6 @@ namespace SimpleWebApp.CMS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public ActionResult EditDescription(int id) =>
-            View(_articleService.GetArticleDescriptionEdit(id));
-
-
-        [HttpPost]
-        public ActionResult EditDescription(ArticleDescriptionEditDto dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(dto);
-            }
-
-            _articleService.UpdateDescription(dto);
-
-            return RedirectToAction("Index", "Home");
-        }
-
         public ActionResult Remove(int id)
         {
             if (!ModelState.IsValid)
