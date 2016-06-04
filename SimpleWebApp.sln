@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebApp.BusinessLogic"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebApp.DAL", "SimpleWebApp.DAL\SimpleWebApp.DAL.csproj", "{E289884C-C869-4791-85A7-F1CF40F3439A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleWebApp.Domain", "SimpleWebApp.Domain\SimpleWebApp.Domain.csproj", "{05AEB1E7-A341-4B2D-9520-5832C5752A29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E289884C-C869-4791-85A7-F1CF40F3439A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E289884C-C869-4791-85A7-F1CF40F3439A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E289884C-C869-4791-85A7-F1CF40F3439A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05AEB1E7-A341-4B2D-9520-5832C5752A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AEB1E7-A341-4B2D-9520-5832C5752A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AEB1E7-A341-4B2D-9520-5832C5752A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AEB1E7-A341-4B2D-9520-5832C5752A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

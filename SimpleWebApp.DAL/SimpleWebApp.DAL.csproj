@@ -49,10 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="ArticlesRepository.cs" />
+    <Compile Include="EF\ArticlesRepository.cs" />
     <Compile Include="EF\EFDbContext.cs" />
-    <Compile Include="Entities\Article.cs" />
     <Compile Include="Migrations\201606011006282_InitialCreate.cs" />
     <Compile Include="Migrations\201606011006282_InitialCreate.Designer.cs">
       <DependentUpon>201606011006282_InitialCreate.cs</DependentUpon>
@@ -82,6 +80,12 @@
     <EmbeddedResource Include="Migrations\201606020731070_AddAttributeToDto.resx">
       <DependentUpon>201606020731070_AddAttributeToDto.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleWebApp.Domain\SimpleWebApp.Domain.csproj">
+      <Project>{05aeb1e7-a341-4b2d-9520-5832c5752a29}</Project>
+      <Name>SimpleWebApp.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

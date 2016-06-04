@@ -5,12 +5,11 @@ namespace SimpleWebApp.BusinessLogic.Abstract
 {
     public interface IArticleService
     {
-        IEnumerable<ArticleViewItemDto> GetArticleViewItemsDto();
-        ArticleEditDto GetArticleEditDto(int id);
-        ArticleDescriptionEditDto GetArticleDescriptionEditDto(int id);
-        void Add(ArticleEditDto dto);
-        void Update(ArticleEditDto editDto); 
-        void UpdateDescription(ArticleDescriptionEditDto descriptionEditDto); 
+        ArticleViewItemDtoList GetArticleViewItems();
+        ArticleEditDto GetArticleEdit(int id);
+        ArticleDescriptionEditDto GetArticleDescriptionEdit(int id);
+        void Save(ArticleEditDto edit);
+        void UpdateDescription(ArticleDescriptionEditDto descriptionEdit); 
         void Remove(int id);
     }
 }

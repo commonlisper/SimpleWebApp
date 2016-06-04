@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using SimpleWebApp.DAL.Abstract;
-using SimpleWebApp.DAL.EF;
-using SimpleWebApp.DAL.Entities;
+using SimpleWebApp.Domain.Abstract;
+using SimpleWebApp.Domain.Entities;
 
-namespace SimpleWebApp.DAL
+namespace SimpleWebApp.DAL.EF
 {
     public class ArticlesRepository : IRepository<Article>
     {
