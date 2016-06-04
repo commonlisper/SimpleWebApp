@@ -28,10 +28,7 @@ namespace SimpleWebApp.BusinessLogic
             };
 
         public ArticleEditDto GetArticleEdit(int id) =>
-            _mapper.Map<Article, ArticleEditDto>(_repository.Get(id));
-
-        public ArticleDescriptionEditDto GetArticleDescriptionEdit(int id) =>
-            _mapper.Map<Article, ArticleDescriptionEditDto>(_repository.Get(id));        
+            _mapper.Map<Article, ArticleEditDto>(_repository.Get(id));    
 
         public void Save(ArticleEditDto edit)
         {
@@ -43,20 +40,6 @@ namespace SimpleWebApp.BusinessLogic
             {
                 _repository.Add(_mapper.Map<ArticleEditDto, Article>(edit));
             }
-        }
-
-        public void UpdateDescription(ArticleDescriptionEditDto descriptionEdit)
-        {
-            var article = _repository.Get(descriptionEdit.Id);
-
-            if (article == null)
-            {
-                return;
-            }
-
-            article.Description = descriptionEdit.Description;
-
-            _repository.Update(article);
         }
 
         public void Remove(int id) =>

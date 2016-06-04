@@ -52,7 +52,6 @@
     <Compile Include="Abstract\IArticleService.cs" />
     <Compile Include="Abstract\IMapper.cs" />
     <Compile Include="ArticleService.cs" />
-    <Compile Include="DTO\ArticleDescriptionEditDto.cs" />
     <Compile Include="DTO\ArticleEditDto.cs" />
     <Compile Include="DTO\ArticleViewItemDto.cs" />
     <Compile Include="DTO\ArticleViewItemDtoList.cs" />
