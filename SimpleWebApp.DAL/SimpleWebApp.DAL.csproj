@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201606020731070_AddAttributeToDto.Designer.cs">
       <DependentUpon>201606020731070_AddAttributeToDto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606040954320_FluentApiAddRequiredFields.cs" />
+    <Compile Include="Migrations\201606040954320_FluentApiAddRequiredFields.Designer.cs">
+      <DependentUpon>201606040954320_FluentApiAddRequiredFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606020731070_AddAttributeToDto.resx">
       <DependentUpon>201606020731070_AddAttributeToDto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606040954320_FluentApiAddRequiredFields.resx">
+      <DependentUpon>201606040954320_FluentApiAddRequiredFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

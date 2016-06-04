@@ -14,6 +14,9 @@ namespace SimpleWebApp.DAL.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Article>().Property(p => p.Title).IsRequired();
+            modelBuilder.Entity<Article>().Property(p => p.Url).IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }       
     }
