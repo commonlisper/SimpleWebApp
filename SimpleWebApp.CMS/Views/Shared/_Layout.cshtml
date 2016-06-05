@@ -18,7 +18,7 @@
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    @Html.ActionLink("SimpleWebApp.CMS", "Index", "Home", null ,new { @class = "navbar-brand" })
+                    @Html.ActionLink("SimpleWebApp.CMS", "Index", "Home", null, new { @class = "navbar-brand" })
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -30,7 +30,8 @@
 
         @RenderBody()
     </div>
-    
+
+    <script src="/scripts/jquery-2.2.3.min.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

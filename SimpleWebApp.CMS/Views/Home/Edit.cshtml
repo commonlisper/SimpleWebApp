@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new Dictionary<string, object> { { "id", "target-form" } }))
 {
     @Html.AntiForgeryToken()
 
@@ -52,3 +52,22 @@
 <div>
     @Html.ActionLink("Back to Articles", "Index", "Home", null, null)
 </div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $("#target-form").submit(onSubmit);
+
+            function onSubmit(e) {
+                $.getJSON("api/article/save", function(data) {
+                    $("#Title").val(data.Title);
+                    $("#Url").val(data.Url);
+                    $("#Description").val(data.Description);
+                });
+
+                e.preventDefault();
+            }
+        });
+    </script>
+}
