@@ -12,9 +12,9 @@ namespace SimpleWebApp.CMS
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AreaRegistration.RegisterAllAreas();            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);            
         }
     }
 }

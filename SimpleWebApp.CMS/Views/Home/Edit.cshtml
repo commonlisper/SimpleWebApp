@@ -11,6 +11,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.Id)
+
     <div class="form-horizontal">
         <h4>Article</h4>
         <hr />
@@ -58,16 +60,30 @@
     <script>
         $(function () {
             $("#target-form").submit(onSubmit);
-
-            function onSubmit(e) {
-                $.getJSON("api/article/save", function(data) {
-                    $("#Title").val(data.Title);
-                    $("#Url").val(data.Url);
-                    $("#Description").val(data.Description);
-                });
-
-                e.preventDefault();
-            }
         });
+
+        function onSubmit(e) {
+            e.preventDefault();
+
+            $.post("/api/article",
+                getFormValues(), function (data) {
+                    setFormValues(data);
+                }, "json");
+        }
+
+        function getFormValues() {
+            return {
+                Id: $("#Id").val(),
+                Title: $("#Title").val(),
+                Url: $("#Url").val(),
+                Description: $("#Description").val()
+            };
+        }
+
+        function setFormValues(data) {
+            $("#Title").val(data.Title);
+            $("#Url").val(data.Url);
+            $("#Description").val(data.Description);
+        }
     </script>
 }

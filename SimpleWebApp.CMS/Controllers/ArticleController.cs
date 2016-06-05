@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using SimpleWebApp.BusinessLogic;
 using SimpleWebApp.BusinessLogic.Abstract;
 using SimpleWebApp.BusinessLogic.DTO;
@@ -22,6 +21,7 @@ namespace SimpleWebApp.CMS.Controllers
         //    _articleService = articleService;
         //}
 
+        [HttpPost]
         public ArticleEditDto Save(ArticleEditDto dto)
         {
             _articleService.Save(dto);
