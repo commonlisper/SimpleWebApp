@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<form class="form-horizontal" action="" method="post" data-bind="submit: submitHandler" role="form">
+<form class="form-horizontal" action="" method="post" data-bind="submit: doSubmit" role="form">
     <input type="hidden" name="Id" id="Id" data-bind="input : Id" />
 
     <div class="form-group">
@@ -64,32 +64,31 @@
                     self.article.Title(model.Title);
                     self.article.Url(model.Url);
                     self.article.Description(model.Description);
-                };                
+                };
 
-                self.loadArticle = function () {                    
+                self.loadArticle = function () {
                     if (self.article.Id() === 0) {
-                        return; 
+                        return;
                     }
 
                     $.ajax({
                         url: "/api/article/" + self.article.Id(),
-                        data: self.article.Id(),
                         type: "GET",
                         contentType: "application/json",
                         dataType: "json"
-                    }).success(self.successHandler).error(self.errorHandler);
+                    }).success(self.success).error(self.error);
                 };
 
-                self.submitHandler = function (form) {
+                self.doSubmit = function (form) {
                     $.ajax({
                         url: "/api/article",
                         data: ko.toJSON(self.article),
                         type: "POST",
                         contentType: "application/json"
-                    }).success(self.successHandler).error(self.errorHandler);
+                    }).success(self.success).error(self.error);
                 };
 
-                self.successHandler = function (data) {
+                self.success = function (data) {
                     if (data == null) {
                         return;
                     }
@@ -99,13 +98,13 @@
                     console.info("Success");
                 };
 
-                self.errorHandler = function () {
+                self.error = function () {
                     console.error("Error");
                 };
             }
 
-            var viewModel = new ArticleEditViewModel();            
-            viewModel.setArticle(@Html.Raw(Json.Encode(Model)));            
+            var viewModel = new ArticleEditViewModel();
+            viewModel.setArticle(@Html.Raw(Json.Encode(Model)));
 
             ko.options.useOnlyNativeEvents = true;
             ko.applyBindings(viewModel);
