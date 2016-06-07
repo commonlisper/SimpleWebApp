@@ -27,8 +27,8 @@ namespace SimpleWebApp.CMS.Controllers
         [HttpGet]
         public ActionResult Edit(int? id) =>
             id.HasValue
-                ? View(_articleService.GetArticleEdit(id.Value))
-                : View();
+                ? View("EditKnockout", _articleService.GetArticleEdit(id.Value))
+                : View("EditKnockout");
 
         [HttpPost]
         public ActionResult Edit(ArticleEditDto articleEditDto)
@@ -46,7 +46,7 @@ namespace SimpleWebApp.CMS.Controllers
                 }
 
                 return View(articleEditDto);
-            }
+            }            
 
             return RedirectToAction("Index", "Home");
         }

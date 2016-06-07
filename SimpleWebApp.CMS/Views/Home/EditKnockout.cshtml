@@ -1,0 +1,102 @@
+﻿@model SimpleWebApp.BusinessLogic.DTO.ArticleEditDto
+
+@{
+    ViewBag.Title = Model?.Id > 0 ? "Edit Article" : "New Article";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form сlass="form-horizontal" action="" method="post" data-bind="submit: submitHandler" role="form">
+    <input type="hidden" name="Id" id="Id" data-bind="input : Id" />
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Title">Title</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="Title" id="Title" data-bind="textInput : article.Title" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Url">Url</label>
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="Url" id="Url" data-bind="textInput : article.Url" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Description">Description</label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="Description" id="Description" data-bind="textInput : article.Description" rows="10"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Save</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to Articles", "Index", "Home", null, null)
+</div>
+@section scripts
+{
+    <script>
+        (function () {
+            function ArticleEditViewModel() {
+                var self = this;
+
+                self.article = {
+                    Id: ko.observable(),
+                    Title: ko.observable(),
+                    Url: ko.observable(),
+                    Description: ko.observable()
+                };
+
+                self.loadArticle = function (id) {
+                    $.ajax({
+                        url: "/api/article/" + id,
+                        data: id,
+                        type: "GET",
+                        contentType: "application/json",
+                        dataType: "json"
+                    }).success(self.successHandler).error(self.errorHandler);
+                };
+
+                self.submitHandler = function (form) {
+                    $.ajax({
+                        url: "/api/article",
+                        data: ko.toJSON(self.article),
+                        type: "POST",
+                        contentType: "application/json"
+                    }).success(self.successHandler).error(self.errorHandler);
+                };
+
+                self.successHandler = function (data) {
+                    if (data === null || data === undefined) {
+                        return;
+                    }
+
+                    self.article.Id(data.Id);
+                    self.article.Title(data.Title);
+                    self.article.Url(data.Url);
+                    self.article.Description(data.Description);
+
+                    console.info("Success");
+                };
+
+                self.errorHandler = function () {
+                    console.error("Error");
+                };
+            }
+
+            var viewModel = new ArticleEditViewModel();
+            viewModel.loadArticle(@(Model?.Id ?? 0));
+
+            ko.options.useOnlyNativeEvents = true;
+            ko.applyBindings(viewModel);
+
+        })();
+    </script>
+}

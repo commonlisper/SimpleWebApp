@@ -19,7 +19,11 @@ namespace SimpleWebApp.CMS.Controllers
         //public ArticleController(IArticleService articleService)
         //{
         //    _articleService = articleService;
-        //}
+        //}        
+
+        [HttpGet]
+        public ArticleEditDto GetArticle(int id) =>
+            _articleService.GetArticleEdit(id);
 
         [HttpPost]
         public ArticleEditDto Save(ArticleEditDto dto)
@@ -27,6 +31,6 @@ namespace SimpleWebApp.CMS.Controllers
             _articleService.Save(dto);
 
             return dto;
-        }
+        }        
     }
 }
