@@ -55,6 +55,10 @@
                 };
 
                 self.loadArticle = function (id) {
+                    if (id === 0) {
+                        return;
+                    }
+
                     $.ajax({
                         url: "/api/article/" + id,
                         data: id,
