@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<form сlass="form-horizontal" action="" method="post" data-bind="submit: submitHandler" role="form">
+<form class="form-horizontal" action="" method="post" data-bind="submit: submitHandler" role="form">
     <input type="hidden" name="Id" id="Id" data-bind="input : Id" />
 
     <div class="form-group">
@@ -32,7 +32,8 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default">Save</button>
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-danger" data-bind="click: loadArticle">Reload</button>
         </div>
     </div>
 </form>
@@ -54,14 +55,25 @@
                     Description: ko.observable()
                 };
 
-                self.loadArticle = function (id) {
-                    if (id === 0) {
+                self.setArticle = function (model) {
+                    if (model == null) {
                         return;
                     }
 
+                    self.article.Id(model.Id);
+                    self.article.Title(model.Title);
+                    self.article.Url(model.Url);
+                    self.article.Description(model.Description);
+                };                
+
+                self.loadArticle = function () {                    
+                    if (self.article.Id() === 0) {
+                        return; 
+                    }
+
                     $.ajax({
-                        url: "/api/article/" + id,
-                        data: id,
+                        url: "/api/article/" + self.article.Id(),
+                        data: self.article.Id(),
                         type: "GET",
                         contentType: "application/json",
                         dataType: "json"
@@ -78,14 +90,11 @@
                 };
 
                 self.successHandler = function (data) {
-                    if (data === null || data === undefined) {
+                    if (data == null) {
                         return;
                     }
 
-                    self.article.Id(data.Id);
-                    self.article.Title(data.Title);
-                    self.article.Url(data.Url);
-                    self.article.Description(data.Description);
+                    self.setArticle(data);
 
                     console.info("Success");
                 };
@@ -95,8 +104,8 @@
                 };
             }
 
-            var viewModel = new ArticleEditViewModel();
-            viewModel.loadArticle(@(Model?.Id ?? 0));
+            var viewModel = new ArticleEditViewModel();            
+            viewModel.setArticle(@Html.Raw(Json.Encode(Model)));            
 
             ko.options.useOnlyNativeEvents = true;
             ko.applyBindings(viewModel);
