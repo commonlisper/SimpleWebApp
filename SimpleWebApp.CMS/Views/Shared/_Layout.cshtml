@@ -24,6 +24,18 @@
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     </ul>
+
+                    <ul class="nav nav-pills pull-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@User.Identity.Name</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                        }
+                    </ul>
                 </div>
             </div>
         </div>

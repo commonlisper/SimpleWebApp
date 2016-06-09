@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new Dictionary<string, object> { { "id", "target-form" }, { "data-bind", "submit: $root.submitHandler, with article" } }))
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new Dictionary<string, object> { { "id", "target-form" } }))
 {
     @Html.AntiForgeryToken()
 
@@ -22,8 +22,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="text" name="Title" id="Title" class="form-control" data-bind="textInput: Title">
-                @*@Html.EditorFor(model => model.Title, new Dictionary<string, object> { { "class", "form-control" }, { "data-bind", "textInput: Title" } })*@
+                @Html.EditorFor(model => model.Title, new Dictionary<string, object> { { "class", "form-control" } })
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -31,8 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="text" name="Url" id="Url" class="form-control" data-bind="textInput: Url">
-                @*@Html.EditorFor(model => model.Url, new Dictionary<string, object> { { "class", "form-control" }, { "data-bind", "textInput: Url" } })*@
+                @Html.EditorFor(model => model.Url, new Dictionary<string, object> { { "class", "form-control" } })
                 @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, 20, 50, new Dictionary<string, object> { { "class", "form-control" }, { "data-bind", "textInput: Description" } })
+                @Html.TextAreaFor(model => model.Description, 20, 50, new Dictionary<string, object> { { "class", "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,72 +59,33 @@
 {
     <script>
         (function () {
-            function ArticleEditViewModel() {
+            $(function () {
+                $("#target-form").submit(onSubmit);
+            });
 
-                this.article =
-                {
-                    Id: ko.observable(@Model.Id),
-                    Title: ko.observable(@Model.Title),
-                    Url: ko.observable(@Model.Url),
-                    Description: ko.observable(@Model.Description)
-                };
+            function onSubmit(e) {
+                e.preventDefault();
 
-                this.submitHandler = function (form, event) {
-                    event.preventDefault();
+                $.post("/api/article",
+                    getFormValues(), function (data) {
+                        setFormValues(data);
+                    }, "json");
+            }
 
-                    $.ajax({
-                        url: "/api/article",
-                        data: this.article.toJSON(),
-                        type: "POST",
-                        contentType: "application/json"
-                    }).success(this.successHandler)
-                        .error(this.errorHandler);
-                };
-
-                this.successHandler = function (data) {
-                    self.article.Id = data.Id;
-                    self.article.Title = data.Title;
-                    self.article.Url = data.Url;
-                    self.article.Description = data.Description;
-
-                    console.log("Success");
-                };
-
-                this.errorHandler = function () {
-                    console.error("Success");
+            function getFormValues() {
+                return {
+                    Id: $("#Id").val(),
+                    Title: $("#Title").val(),
+                    Url: $("#Url").val(),
+                    Description: $("#Description").val()
                 };
             }
 
-            ko.options.useOnlyNativeEvents = true;
-            ko.applyBindings(new ArticleEditViewModel());
-
-            //$(function () {
-            //    $("#target-form").submit(onSubmit);
-            //});
-
-            //function onSubmit(e) {
-            //    e.preventDefault();
-
-            //    $.post("/api/article",
-            //        getFormValues(), function (data) {
-            //            setFormValues(data);
-            //        }, "json");
-            //}
-
-            //function getFormValues() {
-            //    return {
-            //        Id: $("#Id").val(),
-            //        Title: $("#Title").val(),
-            //        Url: $("#Url").val(),
-            //        Description: $("#Description").val()
-            //    };
-            //}
-
-            //function setFormValues(data) {
-            //    $("#Title").val(data.Title);
-            //    $("#Url").val(data.Url);
-            //    $("#Description").val(data.Description);
-            //}
+            function setFormValues(data) {
+                $("#Title").val(data.Title);
+                $("#Url").val(data.Url);
+                $("#Description").val(data.Description);
+            }
         })();
     </script>
 }

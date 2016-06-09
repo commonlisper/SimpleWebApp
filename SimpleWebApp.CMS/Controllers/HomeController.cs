@@ -9,7 +9,7 @@ using SimpleWebApp.DAL.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IArticleService _articleService = new ArticleService(

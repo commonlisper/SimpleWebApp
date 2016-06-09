@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using SimpleWebApp.Domain.Abstract;
 using SimpleWebApp.Domain.Entities;
 
 namespace SimpleWebApp.DAL.EF
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private readonly EfDbContext _db;
 
@@ -31,6 +32,23 @@ namespace SimpleWebApp.DAL.EF
 
         public IEnumerable<User> GetAll() =>
             _db.Users;
+
+        public User GetByEmailAndPassword(string email, string password) =>
+            _db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+        public User GetByEmail(string email) =>
+            _db.Users.FirstOrDefault(u => u.Email == email);
+
+        public void Save(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            _db.Users.Add(user);
+            _db.SaveChanges();
+        }
 
         public void Remove(int id)
         {
