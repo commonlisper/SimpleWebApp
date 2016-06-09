@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EF\ArticlesRepository.cs" />
+    <Compile Include="EF\ArticleRepository.cs" />
     <Compile Include="EF\EFDbContext.cs" />
     <Compile Include="EF\EntityConf\ArticleEntityConfig.cs" />
     <Compile Include="EF\EntityConf\UserEntityConfig.cs" />

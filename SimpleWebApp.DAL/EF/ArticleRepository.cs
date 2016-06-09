@@ -6,11 +6,11 @@ using SimpleWebApp.Domain.Entities;
 
 namespace SimpleWebApp.DAL.EF
 {
-    public class ArticlesRepository : IRepository<Article>
+    public class ArticleRepository : IRepository<Article>
     {
         private readonly EfDbContext _db;
         
-        public ArticlesRepository(EfDbContext db)
+        public ArticleRepository(EfDbContext db)
         {
             _db = db;
         }

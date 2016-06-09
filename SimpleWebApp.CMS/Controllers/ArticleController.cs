@@ -15,7 +15,7 @@ namespace SimpleWebApp.CMS.Controllers
     public class ArticleController : ApiController
     {
         private readonly IArticleService _articleService = new ArticleService(
-            new ArticlesRepository(new EfDbContext()), new MyMapper());
+            new ArticleRepository(new EfDbContext()), new MyMapper());
 
         //public ArticleController(IArticleService articleService)
         //{

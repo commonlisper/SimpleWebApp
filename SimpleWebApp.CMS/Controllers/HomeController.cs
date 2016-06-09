@@ -13,7 +13,7 @@ namespace SimpleWebApp.CMS.Controllers
     public class HomeController : Controller
     {
         private readonly IArticleService _articleService = new ArticleService(
-            new ArticlesRepository(new EfDbContext()), new MyMapper());
+            new ArticleRepository(new EfDbContext()), new MyMapper());
 
         //public HomeController(IRepository<Article> db)
         //{
