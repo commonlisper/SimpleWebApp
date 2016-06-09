@@ -11,6 +11,7 @@ using SimpleWebApp.DAL.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {
+    [Authorize]
     public class ArticleController : ApiController
     {
         private readonly IArticleService _articleService = new ArticleService(
