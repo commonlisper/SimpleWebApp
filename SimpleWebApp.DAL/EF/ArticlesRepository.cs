@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using SimpleWebApp.Domain.Abstract;
 using SimpleWebApp.Domain.Entities;
@@ -22,6 +23,11 @@ namespace SimpleWebApp.DAL.EF
 
         public void Add(Article item)
         {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
             _db.Articles.Add(item);
             _db.SaveChanges();            
         }
@@ -38,7 +44,7 @@ namespace SimpleWebApp.DAL.EF
 
             if (article == null)
             {
-                return;
+                throw new NullReferenceException($"Article with id:{id} don't exist.");
             }
 
             _db.Articles.Remove(article);

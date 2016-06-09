@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="EF\ArticlesRepository.cs" />
     <Compile Include="EF\EFDbContext.cs" />
+    <Compile Include="EF\EntityConf\ArticleEntityConfig.cs" />
+    <Compile Include="EF\EntityConf\UserEntityConfig.cs" />
+    <Compile Include="EF\UserRepository.cs" />
     <Compile Include="Migrations\201606011006282_InitialCreate.cs" />
     <Compile Include="Migrations\201606011006282_InitialCreate.Designer.cs">
       <DependentUpon>201606011006282_InitialCreate.cs</DependentUpon>
@@ -66,6 +69,10 @@
     <Compile Include="Migrations\201606040954320_FluentApiAddRequiredFields.cs" />
     <Compile Include="Migrations\201606040954320_FluentApiAddRequiredFields.Designer.cs">
       <DependentUpon>201606040954320_FluentApiAddRequiredFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606091044514_Add Db Conf and Authorization.cs" />
+    <Compile Include="Migrations\201606091044514_Add Db Conf and Authorization.Designer.cs">
+      <DependentUpon>201606091044514_Add Db Conf and Authorization.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606040954320_FluentApiAddRequiredFields.resx">
       <DependentUpon>201606040954320_FluentApiAddRequiredFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606091044514_Add Db Conf and Authorization.resx">
+      <DependentUpon>201606091044514_Add Db Conf and Authorization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

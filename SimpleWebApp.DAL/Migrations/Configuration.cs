@@ -7,7 +7,7 @@ namespace SimpleWebApp.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "SimpleWebApp.CMS.Models.EF.EfDbContext";
         }
 
