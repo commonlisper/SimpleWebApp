@@ -57,7 +57,7 @@
 
                 self.setArticle = function (model) {
                     if (model == null) {
-                        return;
+                        throw new Error("model is null!");
                     }
 
                     self.article.Id(model.Id);
@@ -67,30 +67,26 @@
                 };
 
                 self.loadArticle = function () {
-                    if (self.article.Id() === 0) {
-                        return;
-                    }
-
                     $.ajax({
                         url: "/api/article/" + self.article.Id(),
                         type: "GET",
                         contentType: "application/json",
                         dataType: "json"
-                    }).success(self.success).error(self.error);
+                    }).done(self.success).fail(self.error);
                 };
 
-                self.doSubmit = function (form) {
+                self.doSubmit = function () {
                     $.ajax({
                         url: "/api/article",
                         data: ko.toJSON(self.article),
                         type: "POST",
                         contentType: "application/json"
-                    }).success(self.success).error(self.error);
+                    }).done(self.success).fail(self.error);
                 };
 
                 self.success = function (data) {
                     if (data == null) {
-                        return;
+                        throw new Error("data is null!");
                     }
 
                     self.setArticle(data);
@@ -98,8 +94,8 @@
                     console.info("Success");
                 };
 
-                self.error = function () {
-                    console.error("Error");
+                self.error = function (error) {
+                    console.error(error.message);
                 };
             }
 
