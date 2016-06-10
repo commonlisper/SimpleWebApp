@@ -15,11 +15,6 @@ namespace SimpleWebApp.CMS.Controllers
         private readonly IArticleService _articleService = new ArticleService(
             new ArticleRepository(new EfDbContext()), new MyMapper());
 
-        //public HomeController(IRepository<Article> db)
-        //{
-        //    _articleDb = db;
-        //}
-
         public ActionResult Index()
         {
             return View(_articleService.GetArticleViewItems());
