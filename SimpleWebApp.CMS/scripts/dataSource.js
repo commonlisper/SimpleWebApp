@@ -3,23 +3,33 @@
 function DataSource(options) {
     var self = this;
 
-    self.items = ko.observableArray(options.items) || ko.observableArray([]);
+    options = $.extend({
+        items: [],
+        columns: [],
+        itemsOnPageList: [5, 10]
+    }, options);
 
-    self.columns = ko.observableArray(options.columns) || ko.observableArray([]);
+    self.items = ko.observableArray(options.items);
 
-    self.itemsOnPage = options.itemsOnPage || 5;
+    self.columns = ko.observableArray(options.columns);
+
+    self.itemsOnPageSelected = ko.observable(options.itemsOnPageList[0]);
+
+    self.itemsOnPageList = ko.observableArray(options.itemsOnPageList);
 
     self.pager = {
-        pages: Math.round(self.items().length / self.itemsOnPage) +
-            (self.items().length % self.itemsOnPage > 0 ? 1 : 0),
         currentPage: ko.observable(1)
     };
 
     self.openPage = function (pageNumber) {
         var selectedItems = articles
-            .slice(pageNumber * self.itemsOnPage - self.itemsOnPage, pageNumber * self.itemsOnPage);
+            .slice(pageNumber * self.itemsOnPageSelected() - self.itemsOnPageSelected(), pageNumber * self.itemsOnPageSelected());
 
         self.items(selectedItems);
         self.pager.currentPage(pageNumber);
+    };
+
+    self.computePages = function (sourceCount) {
+        return Math.ceil(sourceCount / self.itemsOnPageSelected());
     };
 }
