@@ -3,9 +3,9 @@
 function DataSource(options) {
     var self = this;
 
-    self.items = options.items || ko.observableArray([]);
+    self.items = ko.observableArray(options.items) || ko.observableArray([]);
 
-    self.columns = options.columns || ko.observableArray([]);
+    self.columns = ko.observableArray(options.columns) || ko.observableArray([]);
 
     self.itemsOnPage = options.itemsOnPage || 5;
 

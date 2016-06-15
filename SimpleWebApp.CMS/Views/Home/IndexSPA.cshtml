@@ -46,20 +46,19 @@
     <script>
         "use strict";
 
-        var Vm = function () {
+        var vm = function () {
             var self = this;
 
             self.dataSource = new DataSource({
                 items: articles,
-                columns: [
-                    {
-                        header: "Title"
-                    }, {
-                        header: "Url"
-                    }, {
-                        header: "Actions"
-                    }
-                ]
+                columns: [{
+                    header: "Title"
+                }, {
+                    header: "Url"
+                }, {
+                    header: "Actions"
+                }],
+                itemsOnPage: 3
             });
 
             self.events = {

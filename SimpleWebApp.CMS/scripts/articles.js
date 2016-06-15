@@ -1,13 +1,13 @@
 ﻿"use strict";
 
 function Article(article) {
-    this.id = ko.observable(article.id);
-    this.title = ko.observable(article.title);
-    this.url = ko.observable(article.url);
-    this.description = ko.observable(article.description);
+    this.id = article.id;
+    this.title = article.title;
+    this.url = article.url;
+    this.description = article.description;
 }
 
-var articles = ko.observableArray([
+var articles = [
     new Article({
         id: 1,
         title: "Fallot 4",
@@ -80,4 +80,4 @@ var articles = ko.observableArray([
         url: "birds",
         description: "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
     })
-]);
+];
