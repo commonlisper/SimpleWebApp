@@ -1,0 +1,90 @@
+﻿@using System.Web.Optimization
+@{
+    ViewBag.Title = "Main Page";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    @Html.ActionLink("New Article", "Edit", "Home", null, new { @class = "btn btn-primary" })
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr data-bind="foreach: dataSource.columns">
+            <th data-bind="text: header"></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <button class="btn btn-primary" data-bind="click: events.prevPage"><<</button>
+                <button class="btn btn-info" data-bind="text: dataSource.pager.currentPage"></button>
+                <button class="btn btn-primary" data-bind="click: events.nextPage">>></button>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody data-bind="foreach: dataSource.items">
+        <tr>
+            <td data-bind="text: title"></td>
+            <td data-bind="text: url"></td>
+            <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-danger">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/requirejs")
+    <script src="/scripts/articles.js"></script>
+    <script src="/scripts/dataSource.js"></script>
+    <script>
+        "use strict";
+
+        var Vm = function () {
+            var self = this;
+
+            self.dataSource = new DataSource({
+                items: articles,
+                columns: [
+                    {
+                        header: "Title"
+                    }, {
+                        header: "Url"
+                    }, {
+                        header: "Actions"
+                    }
+                ]
+            });
+
+            self.events = {
+                prevPage: function () {
+                    var currentPage = self.dataSource.pager.currentPage();
+                    var nextPage = currentPage <= 1 ? 1 : currentPage - 1;
+
+                    self.dataSource.openPage(nextPage);
+                    self.dataSource.pager.currentPage(nextPage);
+                },
+
+                nextPage: function () {
+                    var currentPage = self.dataSource.pager.currentPage();
+                    var pagesCount = self.dataSource.pager.pages;
+                    var nextPage = currentPage >= pagesCount ? pagesCount : currentPage + 1;
+
+                    self.dataSource.openPage(nextPage);
+                    self.dataSource.pager.currentPage(nextPage);
+                }
+            };
+        };
+
+        var viewModel = new Vm();
+        ko.options.useOnlyNativeEvents = true;
+        ko.applyBindings(viewModel);
+        viewModel.dataSource.openPage(1);
+    </script>
+}

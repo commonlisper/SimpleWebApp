@@ -7,6 +7,7 @@ namespace SimpleWebApp.BusinessLogic.Abstract
     {
         ArticleViewItemDtoList GetArticleViewItems();
         ArticleEditDto GetArticleEdit(int id);
+        IEnumerable<ArticleViewItemDto> GetArticles();
         void Save(ArticleEditDto edit);
         void Remove(int id);
     }

@@ -9,7 +9,7 @@ using SimpleWebApp.DAL.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly IArticleService _articleService = new ArticleService(
@@ -17,7 +17,7 @@ namespace SimpleWebApp.CMS.Controllers
 
         public ActionResult Index()
         {
-            return View(_articleService.GetArticleViewItems());
+            return View("IndexSPA", _articleService.GetArticleViewItems());
         }
 
         [HttpGet]
@@ -42,7 +42,7 @@ namespace SimpleWebApp.CMS.Controllers
                 }
 
                 return View(articleEditDto);
-            }            
+            }
 
             return RedirectToAction("Index", "Home");
         }

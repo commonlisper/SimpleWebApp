@@ -11,7 +11,7 @@ using SimpleWebApp.DAL.EF;
 
 namespace SimpleWebApp.CMS.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ArticleController : ApiController
     {
         private readonly IArticleService _articleService = new ArticleService(
@@ -20,6 +20,10 @@ namespace SimpleWebApp.CMS.Controllers
         [HttpGet]
         public ArticleEditDto GetArticle(int id) =>
             _articleService.GetArticleEdit(id);
+
+        [HttpGet]
+        public IEnumerable<ArticleViewItemDto> GetArticles() =>
+            _articleService.GetArticles();
 
         [HttpPost]
         public ArticleEditDto Save(ArticleEditDto dto)

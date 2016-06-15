@@ -20,6 +20,8 @@ namespace SimpleWebApp.CMS
                 "~/scripts/jquery-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                 "~/scripts/knockout-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/requirejs").Include(
+                "~/scripts/require.js"));
         }
     }
 }

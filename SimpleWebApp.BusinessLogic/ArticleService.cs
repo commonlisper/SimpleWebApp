@@ -28,8 +28,11 @@ namespace SimpleWebApp.BusinessLogic
             };
 
         public ArticleEditDto GetArticleEdit(int id) =>
-            _mapper.Map<Article, ArticleEditDto>(_repository.Get(id));    
+            _mapper.Map<Article, ArticleEditDto>(_repository.Get(id));
 
+        public IEnumerable<ArticleViewItemDto> GetArticles() =>
+            _repository.GetAll().Select(a => _mapper.Map<Article, ArticleViewItemDto>(a));
+        
         public void Save(ArticleEditDto edit)
         {
             if (edit.Id > 0)
