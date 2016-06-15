@@ -58,7 +58,7 @@
                 }, {
                     header: "Actions"
                 }],
-                itemsOnPage: 3
+                itemsOnPage: 5
             });
 
             self.events = {
@@ -81,7 +81,7 @@
             };
         };
 
-        var viewModel = new Vm();
+        var viewModel = new vm();
         ko.options.useOnlyNativeEvents = true;
         ko.applyBindings(viewModel);
         viewModel.dataSource.openPage(1);

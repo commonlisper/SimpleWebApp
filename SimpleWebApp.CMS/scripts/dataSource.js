@@ -10,7 +10,8 @@ function DataSource(options) {
     self.itemsOnPage = options.itemsOnPage || 5;
 
     self.pager = {
-        pages: Math.round(self.items().length / self.itemsOnPage),
+        pages: Math.round(self.items().length / self.itemsOnPage) +
+            (self.items().length % self.itemsOnPage > 0 ? 1 : 0),
         currentPage: ko.observable(1)
     };
 
