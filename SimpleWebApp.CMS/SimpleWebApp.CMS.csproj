@@ -148,11 +148,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="scripts\articles.js" />
+    <Content Include="scripts\grid\articles.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="Content\json\articles.json" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="scripts\dataSource.js" />
+    <Content Include="scripts\grid\dataSource.js" />
+    <Content Include="scripts\grid\gridViewModel.js" />
     <Content Include="scripts\jquery-2.2.3.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="scripts\knockout-3.4.0.debug.js" />

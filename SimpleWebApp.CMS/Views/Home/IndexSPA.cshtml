@@ -22,16 +22,16 @@
             </td>
             <td></td>
             <td>
-                <button class="btn btn-primary" data-bind="click: events.prevPage"><<</button>
-                <button class="btn btn-info" data-bind="text: dataSource.pager.currentPage"></button>
-                <button class="btn btn-primary" data-bind="click: events.nextPage">>></button>
+                <button class="btn btn-primary" data-bind="click: actions.showPrevPage"><<</button>
+                <button class="btn btn-info" data-bind="text: dataSource.currentPage"></button>
+                <button class="btn btn-primary" data-bind="click: actions.showNextPage">>></button>
             </td>
         </tr>
     </tfoot>
-    <tbody data-bind="foreach: dataSource.items">
+    <tbody data-bind="foreach: { data: dataSource.items, as: 'item' }">
         <tr>
-            <td data-bind="text: title"></td>
-            <td data-bind="text: url"></td>
+            <td data-bind="text: item[dataSource.columns()[0].property]"></td>
+            <td data-bind="text: item[dataSource.columns()[1].property]"></td>
             <td>
                 <button class="btn btn-primary">Edit</button>
                 <button class="btn btn-danger">Remove</button>
@@ -43,51 +43,35 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/requirejs")
-    <script src="/scripts/articles.js"></script>
-    <script src="/scripts/dataSource.js"></script>
+    @Scripts.Render("~/bundles/grid")
+
     <script>
         "use strict";
 
-        var vm = function () {
-            var self = this;
-
-            self.dataSource = new DataSource({
-                items: articles,
-                columns: [{
-                    header: "Title"
+        let dataSource = new DataSource({
+            columns: [
+                {
+                    header: "Title",
+                    property: "title"
                 }, {
-                    header: "Url"
+                    header: "Url",
+                    property: "url"
                 }, {
                     header: "Actions"
-                }],
-                itemsOnPageList: [3, 5, 10, 12, 20]
-            });
-
-            self.events = {
-                prevPage: function () {
-                    var currentPage = self.dataSource.pager.currentPage();
-                    var nextPage = currentPage <= 1 ? 1 : currentPage - 1;
-
-                    self.dataSource.openPage(nextPage);
-                },
-
-                nextPage: function () {
-                    var currentPage = self.dataSource.pager.currentPage();
-                    var pagesCount = self.dataSource.computePages(articles.length);
-                    var nextPage = currentPage + 1 >= pagesCount ? pagesCount : currentPage + 1;
-                    console.log(pagesCount);
-                    self.dataSource.openPage(nextPage);
                 }
-            };
-        };
+            ],
+            itemsOnPageList: [3, 5, 10, 12, 20]
+        });
 
-        var viewModel = new vm();
+        let gridViewModel = new GridViewModel(dataSource);
+
         ko.options.useOnlyNativeEvents = true;
-        ko.applyBindings(viewModel);
-        viewModel.dataSource.openPage(1);
+        ko.applyBindings(gridViewModel);
 
-        viewModel.dataSource.itemsOnPageSelected.subscribe(function (newValue) {
-            viewModel.dataSource.openPage(1);
+        gridViewModel.dataSource.openPage(1);
+
+        gridViewModel.dataSource.itemsOnPageSelected.subscribe((newValue) => {
+            gridViewModel.dataSource.openPage(1);
         });
     </script>
 }

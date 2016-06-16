@@ -31,6 +31,15 @@ namespace SimpleWebApp.CMS.Controllers
             _articleService.Save(dto);
 
             return dto;
-        }        
+        }
+
+        //[HttpGet]
+        //public ArticlesResultDto GetResult(int pageNumber, int pageSize)
+        //{
+        //    ArticlesResultDto result = new ArticlesResultDto
+        //    {
+        //        Items = _articleService.
+        //    };
+        //}
     }
 }

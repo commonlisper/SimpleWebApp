@@ -22,6 +22,9 @@ namespace SimpleWebApp.CMS
                 "~/scripts/knockout-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/requirejs").Include(
                 "~/scripts/require.js"));
+            bundles.Add(new ScriptBundle("~/bundles/grid").Include(
+                "~/scripts/grid/dataSource.js",
+                "~/scripts/grid/gridViewModel.js"));
         }
     }
 }
