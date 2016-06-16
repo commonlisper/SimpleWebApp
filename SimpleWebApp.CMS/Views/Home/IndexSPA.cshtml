@@ -20,7 +20,9 @@
             <td>
                 <select data-bind="options: dataSource.itemsOnPageList, value: dataSource.itemsOnPageSelected"></select>
             </td>
-            <td></td>
+            <td data-bind="foreach: dataSource.pages">
+                <button class="btn btn-info" data-bind="text: $data, click: (pageNumber) => { dataSource.openPage(pageNumber) }"></button>
+            </td>
             <td>
                 <button class="btn btn-primary" data-bind="click: actions.showPrevPage"><<</button>
                 <button class="btn btn-info" data-bind="text: dataSource.currentPage"></button>

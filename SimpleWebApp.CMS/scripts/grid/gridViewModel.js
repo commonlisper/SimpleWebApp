@@ -15,7 +15,7 @@ function GridViewModel(dataSource) {
 
         showNextPage: () => {
             const currentPage = self.dataSource.currentPage();
-            const pagesCount = self.dataSource.computePages(self.dataSource.total());
+            const pagesCount = self.dataSource.pages().length;
             const nextPage = currentPage + 1 >= pagesCount ? pagesCount : currentPage + 1;
 
             self.dataSource.openPage(nextPage);

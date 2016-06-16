@@ -15,6 +15,15 @@ function DataSource(options) {
     self.itemsOnPageSelected = ko.observable(options.itemsOnPageList[0]);
     self.itemsOnPageList = ko.observableArray(options.itemsOnPageList);
     self.currentPage = ko.observable(1);
+    self.pages = ko.computed(() => {
+        const p = [];
+
+        for (let i = 1; i <= Math.ceil(self.total() / self.itemsOnPageSelected()) ; i++) {
+            p.push(i);
+        }
+
+        return p;
+    });
 
     self.openPage = (pageNumber) => {
         const get = $.getJSON("/Content/json/articles.json");
@@ -28,9 +37,5 @@ function DataSource(options) {
         });
 
         self.currentPage(pageNumber);
-    };
-
-    self.computePages = (sourceCount) => {
-        return Math.ceil(sourceCount / self.itemsOnPageSelected());
     };
 }
