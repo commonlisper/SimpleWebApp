@@ -6,15 +6,22 @@ function DataSource(options) {
     options = $.extend({
         items: [],
         columns: [],
-        itemsOnPageList: [5, 10]
+        itemsOnPageList: [5]
     }, options);
 
+    self.callback = options.callback || null;
     self.items = ko.observableArray(options.items);
     self.total = ko.observable();
     self.columns = ko.observableArray(options.columns);
     self.itemsOnPageSelected = ko.observable(options.itemsOnPageList[0]);
+
+    self.itemsOnPageSelected.subscribe((newVal) => {
+        self.openPage(1);
+    });
+
     self.itemsOnPageList = ko.observableArray(options.itemsOnPageList);
     self.currentPage = ko.observable(1);
+
     self.pages = ko.computed(() => {
         const p = [];
 
@@ -26,16 +33,14 @@ function DataSource(options) {
     });
 
     self.openPage = (pageNumber) => {
-        const get = $.getJSON("/Content/json/articles.json");
+        const cbresult = self.callback(`/Content/json/articles-page-${pageNumber}.json`);
 
-        get.done((data) => {
-            const selectedItems = data.slice(pageNumber * self.itemsOnPageSelected() - self.itemsOnPageSelected(),
-                pageNumber * self.itemsOnPageSelected());
-
-            self.total(data.length);
-            self.items(selectedItems);
+        cbresult.done((data) => {
+            self.items(data.items);
+            self.total(data.total);
+            self.currentPage(pageNumber);
         });
-
-        self.currentPage(pageNumber);
     };
+
+    self.openPage(1);
 }

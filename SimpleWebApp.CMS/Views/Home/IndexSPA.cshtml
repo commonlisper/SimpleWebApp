@@ -62,18 +62,13 @@
                     header: "Actions"
                 }
             ],
-            itemsOnPageList: [3, 5, 10, 12, 20]
+            //itemsOnPageList: [3, 5, 10, 12, 20],
+            callback: (url) => $.getJSON(url)
         });
 
         let gridViewModel = new GridViewModel(dataSource);
 
         ko.options.useOnlyNativeEvents = true;
-        ko.applyBindings(gridViewModel);
-
-        gridViewModel.dataSource.openPage(1);
-
-        gridViewModel.dataSource.itemsOnPageSelected.subscribe((newValue) => {
-            gridViewModel.dataSource.openPage(1);
-        });
+        ko.applyBindings(gridViewModel);       
     </script>
 }

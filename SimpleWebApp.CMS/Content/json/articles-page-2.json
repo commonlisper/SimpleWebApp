@@ -1,0 +1,37 @@
+﻿{
+  "total": "12",
+  "pageSize": "5",
+  "pagesNumber": "3",
+  "items": [
+    {
+      "id": 6,
+      "title": "Cats",
+      "url": "cats",
+      "description": "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
+    },
+    {
+      "id": 7,
+      "title": "Dogs",
+      "url": "dogs",
+      "description": "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
+    },
+    {
+      "id": 8,
+      "title": "Birds",
+      "url": "birds",
+      "description": "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
+    },
+    {
+      "id": 9,
+      "title": "Fallot 4",
+      "url": "fallout4",
+      "description": "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
+    },
+    {
+      "id": 10,
+      "title": "Cats",
+      "url": "cats",
+      "description": "fsffeef werwe, werwer. Erdfsfsf, wetrer rtdgdgddg."
+    }
+  ]
+}

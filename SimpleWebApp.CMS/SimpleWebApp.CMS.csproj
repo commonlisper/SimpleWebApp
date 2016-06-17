@@ -151,7 +151,9 @@
     <Content Include="scripts\grid\articles.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="Content\json\articles.json" />
+    <Content Include="Content\json\articles-page-1.json" />
+    <Content Include="Content\json\articles-page-2.json" />
+    <Content Include="Content\json\articles-page-3.json" />
     <None Include="scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="scripts\grid\dataSource.js" />
     <Content Include="scripts\grid\gridViewModel.js" />
